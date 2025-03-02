@@ -36,14 +36,14 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name = "index"
+        name = "upload"
         options = {{
           title: 'Upload',
           tabBarIcon: ({ color }) => <Ionicons name = "add-circle" size = { 28 } color = {color} />,
         }}
       />
       <Tabs.Screen
-        name = "profile"
+        name = "index"
         options = {{
           title: 'Profile',
           tabBarIcon: ({ color }) => <Ionicons size = { 28 } name = "person" color = {color} />,
