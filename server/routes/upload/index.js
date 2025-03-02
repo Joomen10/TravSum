@@ -105,6 +105,7 @@ router.post("/", upload.array('files'), async (req, res) => {
       if (!req.files || req.files.length === 0) {
         return res.status(400).json({ status: 'error', msg: 'No files uploaded' });
       }
+      console.log("Entered upload endpoint");
 
       // Construct file metadata
       const processedFiles = await Promise.all(req.files.map(async (file) => {

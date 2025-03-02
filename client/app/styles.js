@@ -36,7 +36,6 @@ export const styles = StyleSheet.create({
 
     //TOP BAR
     topBar : {
-      width : "100%",
       height : 56,
 
       fontSize : 20,

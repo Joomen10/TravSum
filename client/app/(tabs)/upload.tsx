@@ -27,6 +27,47 @@ export default function UploadScreen() {
     }
   };
 
+  const uploadImages = async () => {
+    const formData = new FormData();
+
+    selectedImages.forEach((image, index) => {
+      formData.append('files', {
+        uri: image.uri,
+        type: 'image/jpeg', // Adjust the MIME type accordingly
+        name: `image-${index}.jpg`, // Name the file
+      });
+    });
+
+    console.log(formData);
+
+    try {
+      const response = await fetch('http://10.17.123.234:5050/upload', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      const responseData = await response.json();
+
+      if (response.ok) {
+        console.log('Upload successful', responseData);
+      } else {
+        console.error('Upload failed', responseData);
+      }
+    } catch (error) {
+      console.error('Upload failed', error);
+    }
+
+    router.push({
+      pathname: '/theme',
+      // params: {
+      //   images: JSON.stringify(selectedImages.map(img => img.uri))
+      // }
+    });
+  };
+
   const navigate = () => {
     router.push({
       pathname: '/theme',
@@ -62,7 +103,7 @@ export default function UploadScreen() {
         )}
       </View>
           
-      <TouchableOpacity style = { [styles.button, { opacity: selectedImages.length > 0 ? 1 : 0.5 } ]} onPress = { navigate } disabled = { selectedImages.length === 0 }>
+      <TouchableOpacity style = { [styles.button, { opacity: selectedImages.length > 0 ? 1 : 0.5 } ]} onPress = { uploadImages } disabled = { selectedImages.length === 0 }>
         <Text style = { styles.buttonText }>Upload Images</Text>
       </TouchableOpacity>
     </View>
