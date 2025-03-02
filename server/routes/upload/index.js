@@ -87,6 +87,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
     storage,
+    limits: { fileSize: 50*1024*1024},
     fileFilter: (req, file, cb) => {
         // const allowedExtensions = ['.jpg', '.jpeg', '.png', '.mp4', '.mov', '.avi'];
         const allowedExtensions = ['.jpg', '.jpeg', '.png'];
@@ -125,8 +126,8 @@ router.post("/", upload.array('files'), async (req, res) => {
                 filename: newFilename,
                 type: file.mimetype.includes('image') ? 'image' : 'video',
                 metadata: {
-                    latitude: metadata.latitude,
-                    longitude: metadata.longitude
+                    latitude: metadata.Latitude,
+                    longitude: metadata.Longitude
                 }
             };
       }));
