@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Video, ResizeMode } from 'expo-av';
-import Loading from './loading'; // Import the Loading component
+import Loading from './loading';
 import { styles } from './styles';
 import { router } from 'expo-router';
 
@@ -37,8 +37,8 @@ export default function VideoScreen() {
       )}
 
         <TouchableOpacity style = { [styles.button, styles.uploadButton] } onPress = { navigate }>
-            <Text style = { styles.buttonText }>Upload Selected Images</Text>
-          </TouchableOpacity>
+            <Text style = { styles.buttonText }>Save</Text>
+        </TouchableOpacity>
     </View>
   );
 }

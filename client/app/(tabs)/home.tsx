@@ -1,17 +1,15 @@
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { styles } from '../styles';
 
 export default function Home() {
   return (
-    <View>
-      <Text>Explore</Text>
+    <View style = { styles.container }>
+      <View style = { styles.page }>
+        <Text>Home Page Area</Text>
+      </View>
+      <TouchableOpacity style = { styles.button }>
+          <Text style = { styles.buttonText }>Save</Text>
+      </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  screen : {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-});

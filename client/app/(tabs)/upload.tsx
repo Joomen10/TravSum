@@ -1,4 +1,3 @@
-// index.tsx (Upload page)
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
@@ -7,9 +6,9 @@ import { styles } from '../styles';
 
 export default function UploadScreen() {
   const [selectedImages, setSelectedImages] = useState([]);
+  const [buttonState, setButtonState] = useState(0);
 
   const openImagePicker = async () => {
-    // Request permissions
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
     
     if (permissionResult.granted === false) {
@@ -17,7 +16,6 @@ export default function UploadScreen() {
       return;
     }
     
-    // Launch the image picker
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsMultipleSelection: true,
@@ -29,8 +27,7 @@ export default function UploadScreen() {
     }
   };
 
-  const navigateToThemePage = () => {
-    // Navigate to the theme page with selected images data
+  const navigate = () => {
     router.push({
       pathname: '/theme',
       params: {
@@ -40,34 +37,34 @@ export default function UploadScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Upload Photos</Text>
+    <View style = { styles.container }>
+      <Text style = { styles.topBar }>Osaka Travel</Text>
       
-      <TouchableOpacity style={styles.button} onPress={openImagePicker}>
-        <Text style={styles.buttonText}>Select Images from Gallery</Text>
-      </TouchableOpacity>
-      
-      {selectedImages.length > 0 && (
-        <>
-          <Text style={styles.subtitle}>Selected Images ({selectedImages.length})</Text>
-          <ScrollView style={styles.imageContainer}>
-            {selectedImages.map((image, index) => (
-              <Image 
-                key={index}
-                source={{ uri: image.uri }}
-                style={styles.image}
-              />
-            ))}
-          </ScrollView>
+      <View style={styles.page}>
+        <TouchableOpacity style={styles.imageButton} onPress={openImagePicker}>
+          <Text style={styles.buttonText}>Select Images from Gallery</Text>
+        </TouchableOpacity>
+        
+        {selectedImages.length > 0 && (
+          <>
+            <Text style = { styles.subtitle }>Selected Images ({selectedImages.length})</Text>
+
+            <ScrollView style = { styles.imageContainer }>
+              { selectedImages.map((image, index) => (
+                <Image 
+                  key = { index }
+                  source = { { uri: image.uri } }
+                  style = { styles.image }
+                />
+              ))}
+            </ScrollView>
+          </>
+        )}
+      </View>
           
-          <TouchableOpacity 
-            style={[styles.button, styles.uploadButton]}
-            onPress={navigateToThemePage}
-          >
-            <Text style={styles.buttonText}>Upload Selected Images</Text>
-          </TouchableOpacity>
-        </>
-      )}
+      <TouchableOpacity style = { [styles.button, { opacity: selectedImages.length > 0 ? 1 : 0.5 } ]} onPress = { navigate } disabled = { selectedImages.length === 0 }>
+        <Text style = { styles.buttonText }>Upload Images</Text>
+      </TouchableOpacity>
     </View>
   );
 }

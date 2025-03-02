@@ -44,8 +44,8 @@ export default function ThemeScreen() {
         );
       })}
 
-      <TouchableOpacity style = {styles.button} onPress = { navigate }>
-        <Text style={styles.buttonText}>Select Images from Gallery</Text>
+      <TouchableOpacity style = { styles.button } onPress = { navigate }>
+        <Text style = { styles.buttonText }>Choose Theme</Text>
       </TouchableOpacity>
     </View>
   );

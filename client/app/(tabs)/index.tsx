@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Platform } from 'react-native';
 export default function Profile() {
   return (
     <View>
-      <Text>Profile</Text>
+      <Text>Profile Grid Here</Text>
     </View>
   );
 }
