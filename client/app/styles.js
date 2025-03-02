@@ -14,12 +14,27 @@ export const styles = StyleSheet.create({
       padding: 20,
       paddingTop: 60,
       backgroundColor : "#000",
-      color : '#fff'
+      color : '#fff',
+
+      border: {
+        borderWidth: 1,
+        borderColor: 'red',
+      },
+      
     },
 
     //PAGE
     page : {
       flex : 1,
+      gap : 8,
+      alignItems : "center",
+      justifyContent : "center",
+    },
+
+    //TEXT
+    p : {
+      fontSize : 12,
+      color : "#fff",
     },
 
     title: {
@@ -27,6 +42,7 @@ export const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginBottom: 20,
     },
+
     subtitle: {
       fontSize: 18,
       fontWeight: '600',
@@ -47,13 +63,16 @@ export const styles = StyleSheet.create({
     // BUTTON
     button: {
       width : "100%",
-      height : "56px",
+      height : 56,
 
       backgroundColor: '#2196F3',
       padding: 15,
 
       borderRadius: VAR.radius,
       alignItems: 'center',
+      justifyContent : 'center',
+
+      marginTop : 20,
     },
     buttonText: {
       color: 'white',
@@ -78,20 +97,37 @@ export const styles = StyleSheet.create({
       backgroundColor: '#4CAF50',
     },
     
-    imageContainer: {
-      maxHeight: 400,
-    },
-    image: {
-      width: '100%',
-      height: 200,
-      borderRadius: 10,
-      marginBottom: 10,
-      resizeMode: 'cover',
-    },
+// In your styles.js file
+imageContainer: {
+  height: 150,
+  width: '100%',
+  marginVertical: 10,
+},
+image: {
+  width: 120,
+  height: 120,
+  margin: 5,
+  borderRadius: 8,
+},
 
     //VIDEO
     video: {
       width: "100%",
       height: 200,
+
+      alignItems : "center",
+      justifyContent : "center",
+
+      borderRadius : 8,
+
+      margin : 0,
     },
+
+    videoClip : {
+      width : 300,
+      height : "100%",
+
+      alignItems : "center",
+      justifyContent : "center",
+    }
   });

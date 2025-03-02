@@ -5,6 +5,7 @@ const multer = require('multer');
 const path = require('path');
 // const anthropic = require('../../claude/anthropicClient');
 const fs = require('fs');
+const sharp = require('sharp');
 const ExifParser = require('exif-parser');
 
 const Anthropic = require('@anthropic-ai/sdk');
@@ -34,7 +35,10 @@ function retrieveMetadata(imageURL) {
 }
 
 async function classifyImage(imageURL) {
-    const buffer = fs.readFileSync(imageURL);
+    const buffer = await sharp(imageURL)
+        .resize({ width: 800})
+        .jpeg({ quality: 80})
+        .toBuffer();
     const imageData = buffer.toString('base64');
 
     const message = await anthropic.messages.create({

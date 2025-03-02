@@ -14,38 +14,36 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: 'black',
+          headerShown: false,
+          tabBarButton: HapticTab,
+          tabBarBackground: TabBarBackground,
+          tabBarShowLabel: false, // 👈 Hide the label
+          tabBarStyle: Platform.select({
+            ios: {
+              position: 'absolute',
+            },
+            default: {},
+          }),
+        }}
+      >
       <Tabs.Screen
         name = "home"
         options = {{
-          title: 'Home',
           tabBarIcon: ({ color }) => <Ionicons size = { 28 } name = "home" color = {color} />,
         }}
       />
       <Tabs.Screen
         name = "upload"
         options = {{
-          title: 'Upload',
           tabBarIcon: ({ color }) => <Ionicons name = "add-circle" size = { 28 } color = {color} />,
         }}
       />
       <Tabs.Screen
         name = "index"
         options = {{
-          title: 'Profile',
           tabBarIcon: ({ color }) => <Ionicons size = { 28 } name = "person" color = {color} />,
         }}
       />
